@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #1D4ED8;
+    --color-secondary: #111827;
+    --color-success: #10B981;
+    --color-warning: #F59E0B;
+    --color-danger: #EF4444;
+    --color-info: #3B82F6;
+
+    --font-inter: "Inter", sans-serif;
+
+    --shadow-premium: 0 12px 40px rgba(0, 0, 0, 0.08);
+    --shadow-forensic: 0 4px 12px rgba(29, 78, 216, 0.1);
+}
+
+@layer base {
+    html {
+        @apply scroll-smooth;
+    }
+
+    body {
+        @apply bg-white text-secondary antialiased font-inter;
+        font-feature-settings: "cv02", "cv05", "cv11";
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply tracking-tight font-extrabold;
+    }
+}
+
+@layer components {
+    .container-institutional {
+        @apply max-w-[1240px] mx-auto px-6 md:px-8;
+    }
+
+    .glass-morphism {
+        @apply bg-white/70 backdrop-blur-md border border-white/20;
+    }
+
+    .forensic-card {
+        @apply bg-white rounded-2xl border border-gray-100 shadow-premium transition-all hover:shadow-2xl hover:-translate-y-1;
+    }
+}
+
+/* Institutional Animation Logic */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-forensic-in {
+    animation: fadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}

@@ -1,0 +1,136 @@
+
+"use client";
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import Card from '@/components/ui/data/Card';
+import { MOCK_ASSETS } from '@/lib/mockData';
+
+export default function LandlordAnalyticsPage() {
+    const metrics = [
+        { label: "Portfolio Yield Index", val: "5.82%", trend: "+0.4%", positive: true },
+        { label: "Occupancy Equilibrium", val: "94.2%", trend: "-1.2%", positive: false },
+        { label: "Asset Valuation Delta", val: "+$1.2M", trend: "Q3 Forecast", positive: true },
+        { label: "Collection Velocity", val: "98.4%", trend: "+2.1%", positive: true }
+    ];
+
+    return (
+        <div className="space-y-[40px]">
+            <div>
+                <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Forensic Intelligence</span>
+                <h1 className="text-[32px] font-[700] text-[#111827]">Portfolio Analytics</h1>
+                <p className="text-[16px] text-[#6B7280]">Deep-dive structural analysis of your institutional asset performance.</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px]">
+                {metrics.map((stat, i) => (
+                    <motion.div
+                        key={stat.label}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.1 }}
+                    >
+                        <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[32px] h-full flex flex-col justify-between">
+                            <p className="text-[12px] font-[700] text-[#6B7280] uppercase tracking-[0.05em] mb-[16px]">{stat.label}</p>
+                            <div className="space-y-[4px]">
+                                <h3 className="text-[28px] font-[700] text-[#111827]">{stat.val}</h3>
+                                <p className={`text-[13px] font-[700] ${stat.positive ? 'text-[#10B981]' : 'text-[#EF4444]'}`}>
+                                    {stat.trend}
+                                </p>
+                            </div>
+                        </Card>
+                    </motion.div>
+                ))}
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-[40px]">
+                <div className="lg:col-span-8 space-y-[40px]">
+                    <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[48px]">
+                        <div className="flex justify-between items-center mb-[40px]">
+                            <h3 className="text-[20px] font-[700] text-[#111827]">Yield Performance Protocol</h3>
+                            <select className="bg-[#F9FAFB] border border-[#D1D5DB] rounded-[8px] px-[16px] py-[8px] text-[13px] font-[600] outline-none">
+                                <option>Last 12 Months</option>
+                                <option>Last 3 Years</option>
+                                <option>All Epochs</option>
+                            </select>
+                        </div>
+                        <div className="aspect-[21/9] bg-[#F9FAFB] border border-dashed border-[#D1D5DB] rounded-[16px] flex items-center justify-center relative overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#1D4ED8]/5 to-transparent" />
+                            <span className="text-[14px] font-[600] text-[#D1D5DB]">DYNAMIC YIELD CHART COMPONENT</span>
+                        </div>
+                    </Card>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-[32px]">
+                        <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[40px]">
+                            <h4 className="text-[16px] font-[700] text-[#111827] mb-[24px]">Asset Category Distribution</h4>
+                            <div className="space-y-[20px]">
+                                {[
+                                    { l: "High-Yield Institutional", v: "65%", c: "bg-[#1D4ED8]" },
+                                    { l: "Modern Residential", v: "25%", c: "bg-[#10B981]" },
+                                    { l: "Enterprise Nodes", v: "10%", c: "bg-[#6B7280]" }
+                                ].map(item => (
+                                    <div key={item.l} className="space-y-[8px]">
+                                        <div className="flex justify-between text-[12px] font-[700]">
+                                            <span className="text-[#6B7280] uppercase tracking-[0.05em]">{item.l}</span>
+                                            <span>{item.v}</span>
+                                        </div>
+                                        <div className="h-[6px] bg-[#F3F4F6] rounded-full overflow-hidden">
+                                            <div className={`h-full ${item.c}`} style={{ width: item.v }} />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </Card>
+
+                        <Card className="bg-[#111827] border-none p-[40px] text-white">
+                            <h4 className="text-[16px] font-[700] mb-[24px]">Operational Health</h4>
+                            <div className="space-y-[24px]">
+                                {[
+                                    { l: "Audit Integrity", v: "High" },
+                                    { l: "Signal Latency", v: "12ms" },
+                                    { l: "Compliance Score", v: "99.8" }
+                                ].map(item => (
+                                    <div key={item.l} className="flex justify-between items-center border-b border-white/10 pb-[12px]">
+                                        <span className="text-[12px] text-white/50 font-[600] uppercase tracking-[0.05em]">{item.l}</span>
+                                        <span className="text-[14px] font-[700]">{item.v}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </Card>
+                    </div>
+                </div>
+
+                <div className="lg:col-span-4 space-y-[32px]">
+                    <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[32px]">
+                        <h3 className="text-[18px] font-[700] text-[#111827] mb-[24px]">Critical Delta Node</h3>
+                        <div className="space-y-[20px]">
+                            {MOCK_ASSETS.slice(0, 3).map((asset) => (
+                                <div key={asset.id} className="p-[20px] rounded-[12px] border border-[#D1D5DB]/20 hover:border-[#1D4ED8] transition-colors cursor-pointer group">
+                                    <div className="flex justify-between items-start mb-[8px]">
+                                        <p className="text-[14px] font-[700] text-[#111827] group-hover:text-[#1D4ED8] transition-colors">{asset.title}</p>
+                                        <span className="text-[11px] font-[700] text-[#10B981]">+1.2%</span>
+                                    </div>
+                                    <p className="text-[12px] text-[#6B7280]">Yield Optimization Potential Detected</p>
+                                </div>
+                            ))}
+                        </div>
+                        <button className="w-full mt-[32px] py-[12px] bg-[#F9FAFB] text-[#111827] text-[13px] font-[700] rounded-[8px] border border-[#D1D5DB] hover:bg-white transition-all">
+                            Run Global Optimization
+                        </button>
+                    </Card>
+
+                    <Card className="bg-gradient-to-br from-[#1D4ED8] to-[#1E40AF] border-none p-[32px] text-white shadow-xl relative overflow-hidden">
+                        <div className="absolute top-[-20px] right-[-20px] w-[120px] h-[120px] bg-white/10 rounded-full blur-3xl" />
+                        <h4 className="text-[16px] font-[700] mb-[12px]">Machine Prediction</h4>
+                        <p className="text-[13px] text-white/70 leading-[1.6] mb-[24px]">
+                            Based on neighborhood sentiment forensics, your Manhattan cluster is expected to see a 4.2% yield uplift in Q4.
+                        </p>
+                        <button className="text-[13px] font-[700] flex items-center gap-[8px] group">
+                            Analyze Market Signals <span>→</span>
+                        </button>
+                    </Card>
+                </div>
+            </div>
+        </div>
+    );
+}

@@ -1,0 +1,27 @@
+/* Forensic Functional Utilities */
+
+.text-gradient-institutional {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400;
+}
+
+.border-forensic-signal {
+    border-image: linear-gradient(to right, #1D4ED8, #60A5FA) 1;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.mask-fade-bottom {
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+.node-grid-background {
+    background-image: radial-gradient(#E5E7EB 1px, transparent 1px);
+    background-size: 24px 24px;
+}
