@@ -4,6 +4,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Card from '@/components/ui/data/Card';
+import Link from 'next/link';
+import { FiArrowLeft, FiFileText, FiDownload, FiSettings, FiActivity } from 'react-icons/fi';
 
 const REPORTS = [
     { title: "Q3 Cumulative Yield Audit", date: "Oct 24, 2023", size: "4.2 MB", type: "PDF FORENSIC", status: "Verified" },
@@ -15,13 +17,17 @@ const REPORTS = [
 export default function LandlordReportsPage() {
     return (
         <div className="space-y-[40px]">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-[24px]">
-                <div>
-                    <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Document Archive</span>
-                    <h1 className="text-[32px] font-[700] text-[#111827]">Institutional Reports</h1>
-                    <p className="text-[16px] text-[#6B7280]">Generated structural audits and financial forensics for your portfolio.</p>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-[24px]">
+                <div className="flex items-center gap-[16px]">
+                    <Link href="/landlord/dashboard" className="p-[10px] bg-[#FFFFFF] border border-[#E2E8F0] rounded-[10px] text-[#64748B] hover:text-[#1D4ED8] hover:border-[#1D4ED8] transition-all group">
+                        <FiArrowLeft className="w-[18px] h-[18px] group-hover:-translate-x-[2px] transition-transform" />
+                    </Link>
+                    <div>
+                        <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] block">Document Archive</span>
+                        <h1 className="text-[32px] font-[700] text-[#111827]">Institutional Reports</h1>
+                    </div>
                 </div>
-                <button className="px-[24px] py-[12px] bg-[#111827] text-white text-[14px] font-[600] rounded-[8px] hover:bg-[#1D4ED8] transition-all">
+                <button className="px-[24px] py-[12px] bg-[#111827] text-white text-[14px] font-[600] rounded-[8px] hover:bg-[#1D4ED8] transition-all shadow-lg shadow-black/5">
                     Initiate Custom Audit
                 </button>
             </div>
@@ -36,15 +42,15 @@ export default function LandlordReportsPage() {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: i * 0.05 }}
                         >
-                            <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[32px] hover:border-[#1D4ED8] transition-all group group cursor-pointer">
+                            <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[32px] hover:border-[#1D4ED8] transition-all group cursor-pointer shadow-sm">
                                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-[24px]">
                                     <div className="flex items-center gap-[24px]">
-                                        <div className="w-[56px] h-[56px] bg-[#F9FAFB] rounded-[12px] flex items-center justify-center text-[#6B7280] group-hover:text-[#1D4ED8] transition-colors border border-[#D1D5DB]/20">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
+                                        <div className="w-[56px] h-[56px] bg-[#F9FAFB] rounded-[12px] flex items-center justify-center text-[#64748B] group-hover:bg-[#1D4ED8]/5 group-hover:text-[#1D4ED8] transition-colors border border-[#D1D5DB]/20">
+                                            <FiFileText className="w-[24px] h-[24px]" />
                                         </div>
                                         <div>
                                             <div className="flex items-center gap-[12px] mb-[4px]">
-                                                <h3 className="text-[17px] font-[700] text-[#111827]">{report.title}</h3>
+                                                <h3 className="text-[17px] font-[700] text-[#111827] group-hover:text-[#1D4ED8] transition-colors">{report.title}</h3>
                                                 <span className="px-[8px] py-[2px] bg-[#F3F4F6] text-[#6B7280] text-[9px] font-[800] uppercase rounded-[4px] border border-[#D1D5DB]/20">
                                                     {report.status}
                                                 </span>
@@ -58,8 +64,8 @@ export default function LandlordReportsPage() {
                                             </div>
                                         </div>
                                     </div>
-                                    <button className="px-[20px] py-[12px] bg-[#111827] text-white text-[13px] font-[700] rounded-[8px] hover:bg-[#1D4ED8] transition-all opacity-0 group-hover:opacity-100">
-                                        Download
+                                    <button className="px-[20px] py-[12px] bg-[#F9FAFB] border border-[#E2E8F0] text-[#111827] text-[13px] font-[700] rounded-[8px] hover:bg-[#1D4ED8] hover:text-white hover:border-[#1D4ED8] transition-all opacity-0 group-hover:opacity-100 flex items-center gap-[8px]">
+                                        <FiDownload /> Download
                                     </button>
                                 </div>
                             </Card>
@@ -69,9 +75,12 @@ export default function LandlordReportsPage() {
 
                 {/* Automation Card */}
                 <div className="lg:col-span-4 space-y-[32px]">
-                    <Card className="bg-[#111827] border-none p-[40px] text-white">
-                        <h3 className="text-[18px] font-[700] mb-[24px]">Automated Schedulers</h3>
-                        <div className="space-y-[24px]">
+                    <Card className="bg-[#111827] border-none p-[40px] text-white relative overflow-hidden">
+                        <div className="absolute top-0 right-0 p-[24px] opacity-10">
+                            <FiSettings className="w-[64px] h-[64px]" />
+                        </div>
+                        <h3 className="text-[18px] font-[700] mb-[24px] relative z-10">Automated Schedulers</h3>
+                        <div className="space-y-[24px] relative z-10">
                             {[
                                 { t: "Monthly Yield Forecast", f: "1st of Month", active: true },
                                 { t: "Tax Compliance Snapshot", f: "Quarterly", active: true },
@@ -79,8 +88,8 @@ export default function LandlordReportsPage() {
                             ].map(sched => (
                                 <div key={sched.t} className="flex justify-between items-center gap-[16px]">
                                     <div className="space-y-[4px]">
-                                        <p className="text-[15px] font-[700]">{sched.t}</p>
-                                        <p className="text-[12px] text-white/50">{sched.f}</p>
+                                        <p className="text-[15px] text-black/70 font-[700]">{sched.t}</p>
+                                        <p className="text-[12px] text-black/50">{sched.f}</p>
                                     </div>
                                     <div className={`w-[40px] h-[20px] rounded-full relative transition-colors ${sched.active ? 'bg-[#1D4ED8]' : 'bg-white/10'}`}>
                                         <div className={`absolute top-[4px] w-[12px] h-[12px] bg-white rounded-full transition-all ${sched.active ? 'left-[24px]' : 'left-[4px]'}`} />
@@ -88,18 +97,21 @@ export default function LandlordReportsPage() {
                                 </div>
                             ))}
                         </div>
-                        <button className="w-full mt-[40px] py-[14px] bg-white/10 border border-white/20 rounded-[8px] text-[13px] font-[700] hover:bg-white/20 transition-all">
+                        <button className="w-full mt-[40px] py-[14px] bg-white/10 border border-white/20 rounded-[8px] text-[13px] font-[700] hover:bg-white/20 transition-all relative z-10">
                             Configure Schedulers
                         </button>
                     </Card>
 
-                    <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[40px]">
-                        <div className="space-y-[16px] text-center">
+                    <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[40px] text-center shadow-sm">
+                        <div className="space-y-[16px]">
+                            <div className="w-[56px] h-[56px] bg-[#EFF6FF] text-[#1D4ED8] rounded-full flex items-center justify-center mx-auto">
+                                <FiActivity className="w-[24px] h-[24px]" />
+                            </div>
                             <h4 className="text-[16px] font-[700] text-[#111827]">Request Physical Audit</h4>
                             <p className="text-[13px] text-[#6B7280] leading-[1.6]">
                                 Deploy a physical forensic team to any asset node for in-person structural validation.
                             </p>
-                            <button className="text-[14px] font-[700] text-[#1D4ED8] hover:underline">
+                            <button className="text-[14px] font-[700] text-[#1D4ED8] hover:underline block w-full">
                                 Initialize Request →
                             </button>
                         </div>
@@ -109,3 +121,4 @@ export default function LandlordReportsPage() {
         </div>
     );
 }
+

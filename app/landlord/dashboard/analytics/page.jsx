@@ -5,6 +5,17 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Card from '@/components/ui/data/Card';
 import { MOCK_ASSETS } from '@/lib/mockData';
+import Link from 'next/link';
+import { FiArrowLeft, FiTrendingUp, FiActivity, FiPieChart } from 'react-icons/fi';
+import dynamic from 'next/dynamic';
+
+const ResponsiveContainer = dynamic(() => import('recharts').then(mod => mod.ResponsiveContainer), { ssr: false });
+const LineChart = dynamic(() => import('recharts').then(mod => mod.LineChart), { ssr: false });
+const Line = dynamic(() => import('recharts').then(mod => mod.Line), { ssr: false });
+const XAxis = dynamic(() => import('recharts').then(mod => mod.XAxis), { ssr: false });
+const YAxis = dynamic(() => import('recharts').then(mod => mod.YAxis), { ssr: false });
+const CartesianGrid = dynamic(() => import('recharts').then(mod => mod.CartesianGrid), { ssr: false });
+const Tooltip = dynamic(() => import('recharts').then(mod => mod.Tooltip), { ssr: false });
 
 export default function LandlordAnalyticsPage() {
     const metrics = [
@@ -14,12 +25,25 @@ export default function LandlordAnalyticsPage() {
         { label: "Collection Velocity", val: "98.4%", trend: "+2.1%", positive: true }
     ];
 
+    const yieldData = [
+        { month: 'Jul', yield: 5.4 },
+        { month: 'Aug', yield: 5.6 },
+        { month: 'Sep', yield: 5.5 },
+        { month: 'Oct', yield: 5.8 },
+        { month: 'Nov', yield: 5.7 },
+        { month: 'Dec', yield: 5.9 }
+    ];
+
     return (
         <div className="space-y-[40px]">
-            <div>
-                <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Forensic Intelligence</span>
-                <h1 className="text-[32px] font-[700] text-[#111827]">Portfolio Analytics</h1>
-                <p className="text-[16px] text-[#6B7280]">Deep-dive structural analysis of your institutional asset performance.</p>
+            <div className="flex items-center gap-[16px] mb-[8px]">
+                <Link href="/landlord/dashboard" className="p-[10px] bg-[#FFFFFF] border border-[#E2E8F0] rounded-[10px] text-[#64748B] hover:text-[#1D4ED8] hover:border-[#1D4ED8] transition-all group">
+                    <FiArrowLeft className="w-[18px] h-[18px] group-hover:-translate-x-[2px] transition-transform" />
+                </Link>
+                <div>
+                    <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] block">Forensic Intelligence</span>
+                    <h1 className="text-[32px] font-[700] text-[#111827]">Portfolio Analytics</h1>
+                </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px]">
@@ -30,7 +54,7 @@ export default function LandlordAnalyticsPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.1 }}
                     >
-                        <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[32px] h-full flex flex-col justify-between">
+                        <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[32px] h-full flex flex-col justify-between group hover:border-[#1D4ED8] transition-all">
                             <p className="text-[12px] font-[700] text-[#6B7280] uppercase tracking-[0.05em] mb-[16px]">{stat.label}</p>
                             <div className="space-y-[4px]">
                                 <h3 className="text-[28px] font-[700] text-[#111827]">{stat.val}</h3>
@@ -49,14 +73,51 @@ export default function LandlordAnalyticsPage() {
                         <div className="flex justify-between items-center mb-[40px]">
                             <h3 className="text-[20px] font-[700] text-[#111827]">Yield Performance Protocol</h3>
                             <select className="bg-[#F9FAFB] border border-[#D1D5DB] rounded-[8px] px-[16px] py-[8px] text-[13px] font-[600] outline-none">
+                                <option>Last 6 Months</option>
                                 <option>Last 12 Months</option>
                                 <option>Last 3 Years</option>
-                                <option>All Epochs</option>
                             </select>
                         </div>
-                        <div className="aspect-[21/9] bg-[#F9FAFB] border border-dashed border-[#D1D5DB] rounded-[16px] flex items-center justify-center relative overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#1D4ED8]/5 to-transparent" />
-                            <span className="text-[14px] font-[600] text-[#D1D5DB]">DYNAMIC YIELD CHART COMPONENT</span>
+                        <div className="h-[300px] w-full">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <LineChart data={yieldData}>
+                                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F1F5F9" />
+                                    <XAxis
+                                        dataKey="month"
+                                        axisLine={false}
+                                        tickLine={false}
+                                        tick={{ fill: '#64748B', fontSize: 12, fontWeight: 600 }}
+                                        dy={10}
+                                    />
+                                    <YAxis
+                                        axisLine={false}
+                                        tickLine={false}
+                                        tick={{ fill: '#64748B', fontSize: 12, fontWeight: 600 }}
+                                        domain={['dataMin - 0.5', 'dataMax + 0.5']}
+                                        tickFormatter={(val) => `${val}%`}
+                                    />
+                                    <Tooltip
+                                        contentStyle={{
+                                            backgroundColor: '#0F172A',
+                                            border: 'none',
+                                            borderRadius: '12px',
+                                            color: '#FFF',
+                                            fontSize: '12px',
+                                            fontWeight: '700'
+                                        }}
+                                        cursor={{ stroke: '#1D4ED8', strokeWidth: 2 }}
+                                    />
+                                    <Line
+                                        type="monotone"
+                                        dataKey="yield"
+                                        stroke="#1D4ED8"
+                                        strokeWidth={4}
+                                        dot={{ fill: '#1D4ED8', r: 6, strokeWidth: 2, stroke: '#FFF' }}
+                                        activeDot={{ r: 8, strokeWidth: 0 }}
+                                        animationDuration={1500}
+                                    />
+                                </LineChart>
+                            </ResponsiveContainer>
                         </div>
                     </Card>
 
@@ -134,3 +195,4 @@ export default function LandlordAnalyticsPage() {
         </div>
     );
 }
+

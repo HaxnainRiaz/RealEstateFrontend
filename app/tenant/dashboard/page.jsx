@@ -111,11 +111,11 @@ export default function TenantDashboard() {
                         <div className="space-y-[24px]">
                             <div>
                                 <h4 className="text-[16px] font-[700] mb-[8px] text-[#1D4ED8]">Credential Audit</h4>
-                                <p className="text-[14px] text-[#FFFFFF]/60 leading-[1.6]">Your institutional trust score has been successfully recalibrated based on primary income forensics.</p>
+                                <p className="text-[14px] text-[#000000]/60 leading-[1.6]">Your institutional trust score has been successfully recalibrated based on primary income forensics.</p>
                             </div>
                             <div className="pt-[24px] border-t border-[#FFFFFF]/10">
                                 <h4 className="text-[16px] font-[700] mb-[8px]">Upcoming Assessment</h4>
-                                <p className="text-[14px] text-[#FFFFFF]/60">Settlement protocol initialized for Nov 01, 2023 cycle.</p>
+                                <p className="text-[14px] text-[#000000]/60">Settlement protocol initialized for Nov 01, 2023 cycle.</p>
                             </div>
                         </div>
                     </Card>

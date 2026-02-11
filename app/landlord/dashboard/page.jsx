@@ -5,115 +5,283 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/lib/context/AuthContext';
 import Card, { CardTitle, CardDescription, CardContent } from '@/components/ui/data/Card';
-import { MOCK_ASSETS } from '@/lib/mockData';
+import { MOCK_ASSETS, MOCK_ANALYTICS } from '@/lib/mockData';
 import Link from 'next/link';
 import PrimaryButton from '@/components/ui/button/PrimaryButton';
+import {
+    FiArrowRight,
+    FiTrendingUp,
+    FiUsers,
+    FiDollarSign,
+    FiActivity,
+    FiPieChart,
+    FiBarChart2,
+    FiClipboard,
+    FiAlertCircle,
+    FiCheckCircle,
+    FiZap
+} from 'react-icons/fi';
+import dynamic from 'next/dynamic';
+
+const ResponsiveContainer = dynamic(() => import('recharts').then(mod => mod.ResponsiveContainer), { ssr: false });
+const AreaChart = dynamic(() => import('recharts').then(mod => mod.AreaChart), { ssr: false });
+const Area = dynamic(() => import('recharts').then(mod => mod.Area), { ssr: false });
+const XAxis = dynamic(() => import('recharts').then(mod => mod.XAxis), { ssr: false });
+const YAxis = dynamic(() => import('recharts').then(mod => mod.YAxis), { ssr: false });
+const CartesianGrid = dynamic(() => import('recharts').then(mod => mod.CartesianGrid), { ssr: false });
+const Tooltip = dynamic(() => import('recharts').then(mod => mod.Tooltip), { ssr: false });
 
 export default function LandlordDashboard() {
     const { user } = useAuth();
 
     const stats = [
-        { label: "Portfolio Value", val: "$12.4M", color: "text-[#111827]" },
-        { label: "Occupancy Rate", val: "94.2%", color: "text-[#10B981]" },
-        { label: "Monthly Revenue", val: "$48,250", color: "text-[#1D4ED8]" },
-        { label: "Active Nodes", val: MOCK_ASSETS.length, color: "text-[#111827]" }
+        { label: "Portfolio Value", val: "$12.4M", trend: "+12.4%", icon: FiPieChart, color: "text-[#1D4ED8]", bg: "bg-[#1D4ED8]/5" },
+        { label: "Occupancy Rate", val: "94.2%", trend: "+0.8%", icon: FiUsers, color: "text-[#10B981]", bg: "bg-[#10B981]/5" },
+        { label: "Monthly Revenue", val: "$48,250", trend: "+4.2%", icon: FiDollarSign, color: "text-[#1D4ED8]", bg: "bg-[#1D4ED8]/5" },
+        { label: "Active Nodes", val: MOCK_ASSETS.length, trend: "Stable", icon: FiActivity, color: "text-[#0F172A]", bg: "bg-[#F1F5F9]" }
     ];
 
-    return (
-        <div className="space-y-[40px]">
-            {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-[24px]">
-                <div>
-                    <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Asset Terminal</span>
-                    <h1 className="text-[32px] font-[700] text-[#111827]">Operational Overview</h1>
-                    <p className="text-[16px] text-[#6B7280]">Real-time forensics for {user?.email?.split('@')[0] || 'Institutional Landlord'}.</p>
+    const container = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
 
-                    {/* Quick Navigation */}
-                    <div className="flex gap-[16px] mt-[16px]">
+    const item = {
+        hidden: { opacity: 0, y: 20 },
+        show: { opacity: 1, y: 0 }
+    };
+
+    return (
+        <div className="space-y-[48px]">
+            {/* Header */}
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-[32px]">
+                <div>
+                    <div className="flex items-center gap-[12px] mb-[12px]">
+                        <span className="px-[10px] py-[4px] bg-[#1D4ED8] text-[#FFFFFF] text-[10px] font-[800] uppercase tracking-[0.15em] rounded-[6px]">Asset Terminal</span>
+                        <div className="w-[4px] h-[4px] rounded-full bg-[#CBD5E1]" />
+                        <span className="text-[12px] font-[600] text-[#64748B]">Node: {user?.id || 'APEX-018'}</span>
+                    </div>
+                    <h1 className="text-[36px] font-[800] text-[#0F172A] tracking-tight">Operational Overview</h1>
+                    <p className="text-[16px] text-[#64748B] mt-[4px]">Real-time forensics for the Tirios Institutional Network.</p>
+
+                    {/* Quick Navigation Nodes */}
+                    <div className="flex flex-wrap gap-[12px] mt-[24px]">
                         {[
-                            { label: 'Analytics', href: '/landlord/dashboard/analytics', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg> },
-                            { label: 'Market Insights', href: '/landlord/dashboard/market-insights', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /></svg> },
-                            { label: 'Performance', href: '/landlord/dashboard/performance', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg> },
-                            { label: 'Reports', href: '/landlord/dashboard/reports', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg> }
-                        ].map(link => (
-                            <Link key={link.label} href={link.href} className="flex items-center gap-[8px] px-[12px] py-[8px] bg-[#F9FAFB] border border-[#D1D5DB]/30 rounded-[8px] hover:bg-[#1D4ED8] hover:text-white hover:border-[#1D4ED8] transition-all group">
-                                <span className="text-[#6B7280] group-hover:text-white transition-colors">{link.icon}</span>
-                                <span className="text-[13px] font-[600] text-[#111827] group-hover:text-white transition-colors">{link.label}</span>
-                            </Link>
-                        ))}
+                            { label: 'Analytics', href: '/landlord/dashboard/analytics', icon: FiBarChart2 },
+                            { label: 'Market Insights', href: '/landlord/dashboard/market-insights', icon: FiZap },
+                            { label: 'Performance', href: '/landlord/dashboard/performance', icon: FiTrendingUp },
+                            { label: 'Audit Reports', href: '/landlord/dashboard/reports', icon: FiClipboard }
+                        ].map(link => {
+                            const Icon = link.icon;
+                            return (
+                                <Link key={link.label} href={link.href} className="flex items-center gap-[10px] px-[14px] py-[10px] bg-[#FFFFFF] border border-[#E2E8F0] rounded-[10px] hover:border-[#1D4ED8] hover:shadow-lg transition-all group active:scale-95">
+                                    <Icon className="text-[#64748B] group-hover:text-[#1D4ED8] transition-colors w-[16px] h-[16px]" />
+                                    <span className="text-[13px] font-[700] text-[#0F172A]">{link.label}</span>
+                                </Link>
+                            );
+                        })}
                     </div>
                 </div>
-                <Link href="/landlord/listings/create">
-                    <PrimaryButton className="h-[48px] px-[24px]">Deploy New Asset</PrimaryButton>
-                </Link>
+                <div className="flex items-center gap-[16px]">
+                    <Link href="/landlord/listings/create">
+                        <PrimaryButton className="h-[52px] px-[28px] flex items-center gap-[10px] shadow-[0_12px_24px_rgba(29,78,216,0.2)]">
+                            <FiZap className="w-[18px] h-[18px]" />
+                            Deploy New Asset
+                        </PrimaryButton>
+                    </Link>
+                </div>
             </div>
 
             {/* Stats HUD */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px]">
-                {stats.map((stat, i) => (
-                    <motion.div
-                        key={stat.label}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.1 }}
-                    >
-                        <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[32px]">
-                            <p className="text-[12px] font-[700] text-[#6B7280] uppercase tracking-[0.05em] mb-[12px]">{stat.label}</p>
-                            <p className={`text-[28px] font-[700] ${stat.color}`}>{stat.val}</p>
-                        </Card>
-                    </motion.div>
-                ))}
-            </div>
+            <motion.div
+                variants={container}
+                initial="hidden"
+                animate="show"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px]"
+            >
+                {stats.map((stat) => {
+                    const Icon = stat.icon;
+                    return (
+                        <motion.div key={stat.label} variants={item}>
+                            <Card className="bg-[#FFFFFF] border-[#E2E8F0] p-[32px] group hover:border-[#1D4ED8] transition-all relative overflow-hidden">
+                                <div className="absolute top-0 right-0 p-[24px] opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all">
+                                    <Icon className={`w-[64px] h-[64px] ${stat.color}`} />
+                                </div>
+                                <div className="flex items-center gap-[12px] mb-[16px]">
+                                    <div className={`p-[10px] rounded-[10px] ${stat.bg}`}>
+                                        <Icon className={`w-[20px] h-[20px] ${stat.color}`} />
+                                    </div>
+                                    <p className="text-[11px] font-[800] text-[#64748B] uppercase tracking-[0.1em]">{stat.label}</p>
+                                </div>
+                                <div className="flex items-end justify-between">
+                                    <p className={`text-[32px] font-[800] text-[#0F172A]`}>{stat.val}</p>
+                                    <div className="flex items-center gap-[4px] text-[12px] font-[700] text-[#10B981]">
+                                        <FiTrendingUp />
+                                        <span>{stat.trend}</span>
+                                    </div>
+                                </div>
+                            </Card>
+                        </motion.div>
+                    );
+                })}
+            </motion.div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-[40px]">
-                {/* Performance Visualization Placeholder */}
-                <div className="lg:col-span-8 space-y-[24px]">
-                    <h2 className="text-[20px] font-[700] text-[#111827]">Revenue Pipeline</h2>
-                    <Card className="aspect-video bg-[#FFFFFF] border-[#D1D5DB]/30 flex items-center justify-center relative overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-b from-[#1D4ED8]/5 to-transparent" />
-                        <span className="text-[14px] font-[600] text-[#6B7280] z-10">Institutional Yield Graph Node</span>
+                {/* Performance Visualization */}
+                <motion.div
+                    variants={item}
+                    initial="hidden"
+                    animate="show"
+                    className="lg:col-span-8 space-y-[28px]"
+                >
+                    <div className="flex items-center justify-between">
+                        <h2 className="text-[22px] font-[800] text-[#0F172A] tracking-tight">Revenue Pipeline</h2>
+                        <button className="text-[13px] font-[700] text-[#1D4ED8] hover:underline flex items-center gap-[6px]">
+                            Full Deep-Dive <FiArrowRight />
+                        </button>
+                    </div>
+                    <Card className="h-[400px] bg-[#FFFFFF] border-[#E2E8F0] p-[32px] relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#F8FAFC] to-[#FFFFFF]" />
+                        <div className="relative z-10 w-full h-full">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <AreaChart data={MOCK_ANALYTICS.revenueChartData}>
+                                    <defs>
+                                        <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="5%" stopColor="#1D4ED8" stopOpacity={0.1} />
+                                            <stop offset="95%" stopColor="#1D4ED8" stopOpacity={0} />
+                                        </linearGradient>
+                                    </defs>
+                                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F1F5F9" />
+                                    <XAxis
+                                        dataKey="month"
+                                        axisLine={false}
+                                        tickLine={false}
+                                        tick={{ fill: '#64748B', fontSize: 12, fontWeight: 600 }}
+                                        dy={10}
+                                    />
+                                    <YAxis
+                                        axisLine={false}
+                                        tickLine={false}
+                                        tick={{ fill: '#64748B', fontSize: 12, fontWeight: 600 }}
+                                        tickFormatter={(value) => `$${value / 1000}k`}
+                                    />
+                                    <Tooltip
+                                        contentStyle={{
+                                            backgroundColor: '#0F172A',
+                                            border: 'none',
+                                            borderRadius: '12px',
+                                            color: '#FFF',
+                                            fontSize: '12px',
+                                            fontWeight: '700',
+                                            boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1)'
+                                        }}
+                                        itemStyle={{ color: '#60A5FA' }}
+                                        cursor={{ stroke: '#1D4ED8', strokeWidth: 2 }}
+                                    />
+                                    <Area
+                                        type="monotone"
+                                        dataKey="value"
+                                        stroke="#1D4ED8"
+                                        strokeWidth={3}
+                                        fillOpacity={1}
+                                        fill="url(#colorValue)"
+                                        animationDuration={2000}
+                                    />
+                                </AreaChart>
+                            </ResponsiveContainer>
+                        </div>
                     </Card>
-                </div>
+                </motion.div>
 
-                {/* Priority Alerts */}
-                <div className="lg:col-span-4 space-y-[24px]">
-                    <h2 className="text-[20px] font-[700] text-[#111827]">Critical Signals</h2>
+                {/* Priority Alerts / Critical Signals */}
+                <motion.div
+                    variants={item}
+                    initial="hidden"
+                    animate="show"
+                    className="lg:col-span-4 space-y-[28px]"
+                >
+                    <h2 className="text-[22px] font-[800] text-[#0F172A] tracking-tight">Critical Signals</h2>
                     <div className="space-y-[16px]">
-                        <Card className="bg-[#FEF2F2] border-[#EF4444]/20 p-[24px]">
-                            <div className="flex gap-[16px]">
-                                <div className="w-[8px] h-[8px] rounded-full bg-[#EF4444] mt-[6px]" />
-                                <div>
-                                    <h4 className="text-[15px] font-[700] text-[#111827]">Rent Delinquency</h4>
-                                    <p className="text-[13px] text-[#6B7280] mt-[4px]">Unit 4B (Manhattan) is 3 days past settlement protocol.</p>
-                                </div>
-                            </div>
-                        </Card>
-
-                        <Card className="bg-[#F9FAFB] border-[#D1D5DB]/50 p-[24px]">
-                            <div className="flex gap-[16px]">
-                                <div className="w-[8px] h-[8px] rounded-full bg-[#1D4ED8] mt-[6px]" />
-                                <div>
-                                    <h4 className="text-[15px] font-[700] text-[#111827]">New Application</h4>
-                                    <p className="text-[13px] text-[#6B7280] mt-[4px]">High-yield tenant candidate signaled for Industrial Quarter.</p>
-                                </div>
-                            </div>
-                        </Card>
+                        {[
+                            {
+                                type: 'danger',
+                                title: 'Rent Delinquency',
+                                desc: 'Unit 4B (Manhattan) is 3 days past settlement.',
+                                icon: FiAlertCircle,
+                                color: 'text-[#EF4444]',
+                                bg: 'bg-[#FEF2F2]',
+                                border: 'border-[#EF4444]/20'
+                            },
+                            {
+                                type: 'success',
+                                title: 'Credential Approval',
+                                desc: 'High-yield tenant candidate verified for Industrial Quarter.',
+                                icon: FiCheckCircle,
+                                color: 'text-[#10B981]',
+                                bg: 'bg-[#F0FDF4]',
+                                border: 'border-[#10B981]/20'
+                            },
+                            {
+                                type: 'info',
+                                title: 'Maintenance Signal',
+                                desc: 'Structural node HVAC reported minor latency in Brooklyn.',
+                                icon: FiActivity,
+                                color: 'text-[#1D4ED8]',
+                                bg: 'bg-[#EFF6FF]',
+                                border: 'border-[#1D4ED8]/20'
+                            }
+                        ].map((signal, idx) => {
+                            const Icon = signal.icon;
+                            return (
+                                <motion.div key={idx} variants={item}>
+                                    <Card className={`${signal.bg} ${signal.border} p-[24px] hover:shadow-md transition-all cursor-pointer group`}>
+                                        <div className="flex gap-[20px]">
+                                            <div className={`${signal.color} mt-[2px]`}>
+                                                <Icon className="w-[20px] h-[20px]" />
+                                            </div>
+                                            <div>
+                                                <h4 className="text-[15px] font-[800] text-[#0F172A]">{signal.title}</h4>
+                                                <p className="text-[13px] text-[#64748B] mt-[4px] leading-relaxed group-hover:text-[#0F172A] transition-colors">{signal.desc}</p>
+                                            </div>
+                                        </div>
+                                    </Card>
+                                </motion.div>
+                            );
+                        })}
                     </div>
 
-                    <Card className="bg-[#111827] border-none p-[32px] text-[#FFFFFF]">
-                        <h4 className="text-[16px] font-[700] mb-[16px]">System Integrity</h4>
-                        <div className="space-y-[16px]">
-                            <div className="flex justify-between text-[13px]">
-                                <span className="text-[#FFFFFF]/60">Node Uptime</span>
-                                <span className="text-[#10B981]">99.98%</span>
+                    <Card className="bg-[#0F172A] border-none p-[32px] text-[#FFFFFF] relative overflow-hidden shadow-2xl">
+                        <div className="absolute top-0 right-0 p-[24px] opacity-10">
+                            <FiActivity className="w-[80px] h-[80px]" />
+                        </div>
+                        <h4 className="text-[16px] font-[800] mb-[24px] flex items-center gap-[10px]">
+                            <div className="w-[8px] h-[8px] rounded-full bg-[#10B981] animate-pulse" />
+                            System Integrity
+                        </h4>
+                        <div className="space-y-[20px]">
+                            <div className="flex justify-between items-center text-[13px]">
+                                <span className="text-white/60 font-[500]">Node Uptime</span>
+                                <span className="text-[#10B981] font-[800]">99.98%</span>
                             </div>
-                            <div className="flex justify-between text-[13px]">
-                                <span className="text-[#FFFFFF]/60">Data Latency</span>
-                                <span>14ms</span>
+                            <div className="w-full h-[4px] bg-white/10 rounded-full overflow-hidden">
+                                <motion.div initial={{ width: 0 }} animate={{ width: '99.98%' }} transition={{ duration: 1.5 }} className="h-full bg-[#10B981]" />
+                            </div>
+                            <div className="flex justify-between items-center text-[13px]">
+                                <span className="text-white/60 font-[500]">Network Latency</span>
+                                <span className="text-[#FFFFFF] font-[800]">14ms</span>
+                            </div>
+                            <div className="flex justify-between items-center text-[13px]">
+                                <span className="text-white/60 font-[500]">Structural Sync</span>
+                                <span className="text-[#FFFFFF] font-[800]">Live</span>
                             </div>
                         </div>
                     </Card>
-                </div>
+                </motion.div>
             </div>
         </div>
     );

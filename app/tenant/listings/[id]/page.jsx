@@ -115,8 +115,8 @@ export default function TenantListingDetailPage() {
                                 { label: "Energy Protocol", val: "Grade A" }
                             ].map(stat => (
                                 <div key={stat.label} className="flex justify-between items-center border-b border-[#FFFFFF]/10 pb-[12px]">
-                                    <span className="text-[13px] text-[#FFFFFF]/60 font-[600] uppercase tracking-[0.05em]">{stat.label}</span>
-                                    <span className="text-[16px] font-[700]">{stat.val}</span>
+                                    <span className="text-[13px] text-[#000000]/60 font-[600] uppercase tracking-[0.05em]">{stat.label}</span>
+                                    <span className="text-[16px] text-[#000000] font-[700]">{stat.val}</span>
                                 </div>
                             ))}
                         </div>
@@ -127,7 +127,7 @@ export default function TenantListingDetailPage() {
                         <div className="aspect-square bg-[#F9FAFB] rounded-[16px] mb-[24px] border border-[#D1D5DB]/20 flex items-center justify-center">
                             <span className="text-[12px] text-[#6B7280] font-[600]">MAP COMPONENT NODE</span>
                         </div>
-                        <PrimaryButton className="w-full bg-transparent border border-[#D1D5DB] text-[#111827] hover:bg-[#F9FAFB] shadow-none">
+                        <PrimaryButton className="w-full border border-[#D1D5DB] text-[#111827] shadow-none">
                             Explore Neighborhood
                         </PrimaryButton>
                     </Card>

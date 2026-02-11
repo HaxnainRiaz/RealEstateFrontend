@@ -5,6 +5,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Card from '@/components/ui/data/Card';
 import { MOCK_ASSETS } from '@/lib/mockData';
+import Link from 'next/link';
+import { FiArrowLeft, FiCheckCircle, FiActivity } from 'react-icons/fi';
 
 export default function LandlordPerformancePage() {
     const assetPerformance = MOCK_ASSETS.map(asset => ({
@@ -15,10 +17,14 @@ export default function LandlordPerformancePage() {
 
     return (
         <div className="space-y-[40px]">
-            <div>
-                <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Operational Efficiency</span>
-                <h1 className="text-[32px] font-[700] text-[#111827]">Performance Audit</h1>
-                <p className="text-[16px] text-[#6B7280]">Real-time efficiency indices and ROI forensics for each asset node.</p>
+            <div className="flex items-center gap-[16px] mb-[8px]">
+                <Link href="/landlord/dashboard" className="p-[10px] bg-[#FFFFFF] border border-[#E2E8F0] rounded-[10px] text-[#64748B] hover:text-[#1D4ED8] hover:border-[#1D4ED8] transition-all group">
+                    <FiArrowLeft className="w-[18px] h-[18px] group-hover:-translate-x-[2px] transition-transform" />
+                </Link>
+                <div>
+                    <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] block">Operational Efficiency</span>
+                    <h1 className="text-[32px] font-[700] text-[#111827]">Performance Audit</h1>
+                </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-[32px]">
@@ -33,7 +39,7 @@ export default function LandlordPerformancePage() {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: i * 0.1 }}
                     >
-                        <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[40px] text-center">
+                        <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[40px] text-center group hover:border-[#1D4ED8] transition-all">
                             <p className="text-[11px] font-[700] text-[#6B7280] uppercase tracking-[0.1em] mb-[12px]">{stat.label}</p>
                             <h3 className="text-[32px] font-[700] text-[#111827] mb-[8px]">{stat.val}</h3>
                             <p className="text-[13px] font-[600] text-[#1D4ED8]">{stat.sub}</p>
@@ -109,7 +115,7 @@ export default function LandlordPerformancePage() {
                                     <h4 className="text-[16px] font-[700]">{opt.t}</h4>
                                     <span className="text-[11px] font-[700] uppercase text-[#1D4ED8] bg-white px-[8px] py-[2px] rounded-[4px]">{opt.v}</span>
                                 </div>
-                                <p className="text-[13px] text-white/50 leading-[1.6]">{opt.d}</p>
+                                <p className="text-[13px] text-black/50 leading-[1.6] font-[400]">{opt.d}</p>
                             </div>
                         ))}
                     </div>
@@ -117,7 +123,7 @@ export default function LandlordPerformancePage() {
 
                 <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[48px] flex flex-col justify-center text-center space-y-[32px]">
                     <div className="w-[80px] h-[80px] bg-[#10B981]/10 rounded-full flex items-center justify-center mx-auto text-[#10B981]">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
+                        <FiCheckCircle className="w-[40px] h-[40px]" />
                     </div>
                     <div className="space-y-[12px]">
                         <h3 className="text-[22px] font-[700] text-[#111827]">Institutional Benchmark Passed</h3>
