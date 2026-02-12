@@ -100,13 +100,13 @@ export default function TenantProfilePage() {
                 </div>
 
                 <div className="lg:col-span-4 space-y-[24px]">
-                    <Card className="bg-[#111827] border-none p-[32px] text-[#FFFFFF] shadow-xl">
-                        <h4 className="text-[16px] font-[700] mb-[16px]">Identity Quality</h4>
+                    <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[32px] shadow-sm">
+                        <h4 className="text-[16px] font-[700] mb-[16px] text-[#111827]">Identity Quality</h4>
                         <div className="text-center mb-[24px]">
                             <p className="text-[48px] font-[700] text-[#10B981]">98</p>
-                            <p className="text-[12px] text-[#000000]/60 uppercase tracking-[0.1em]">Verified Trust Score</p>
+                            <p className="text-[12px] text-[#6B7280] uppercase tracking-[0.1em]">Verified Trust Score</p>
                         </div>
-                        <p className="text-[13px] text-[#000000]/60 leading-[1.6]">
+                        <p className="text-[13px] text-[#6B7280] leading-[1.6]">
                             Your trust score is derived from credential longevity and payment structural integrity.
                         </p>
                     </Card>

@@ -7,6 +7,7 @@ import { useParams } from 'next/navigation';
 import { MOCK_REQUESTS, MOCK_ASSETS } from '@/lib/mockData';
 import Card from '@/components/ui/data/Card';
 import Link from 'next/link';
+import { BackButton } from '@/components/ui/navigation';
 
 export default function TenantApplicationDetailPage() {
     const { id } = useParams();
@@ -17,9 +18,7 @@ export default function TenantApplicationDetailPage() {
         <div className="space-y-[40px]">
             <div className="flex justify-between items-start">
                 <div className="space-y-[16px]">
-                    <Link href="/tenant/applications" className="text-[14px] font-[600] text-[#1D4ED8] flex items-center gap-[8px] hover:underline">
-                        ← Back to Signals
-                    </Link>
+                    <BackButton label="Back to Signals" href="/tenant/applications" />
                     <div className="space-y-[8px]">
                         <div className="flex items-center gap-[12px]">
                             <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em]">Signal Node: {req.id}</span>

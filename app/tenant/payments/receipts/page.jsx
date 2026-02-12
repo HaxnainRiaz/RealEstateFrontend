@@ -5,10 +5,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { MOCK_PAYMENTS } from '@/lib/mockData';
 import Card from '@/components/ui/data/Card';
+import { BackButton } from '@/components/ui/navigation';
 
 export default function TenantPaymentReceiptsPage() {
     return (
         <div className="space-y-[40px]">
+            <BackButton href="/tenant/payments" />
             <div>
                 <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Forensic Vault</span>
                 <h1 className="text-[32px] font-[700] text-[#111827]">Settlement Receipts</h1>

@@ -5,6 +5,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Card from '@/components/ui/data/Card';
 import Section from '@/components/shared/layout/Section';
+import { BackButton } from '@/components/ui/navigation';
 
 const SCHEDULE = [
     { id: '1', title: 'Monthly Assessment - Nov', date: 'Nov 01, 2023', amount: '$4,200.00', status: 'Scheduled' },
@@ -15,6 +16,7 @@ const SCHEDULE = [
 export default function TenantPaymentSchedulePage() {
     return (
         <div className="space-y-[40px]">
+            <BackButton href="/tenant/payments" />
             <div className="flex justify-between items-end">
                 <div>
                     <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Yield Timing</span>

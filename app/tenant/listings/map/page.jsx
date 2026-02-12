@@ -5,12 +5,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Card from '@/components/ui/data/Card';
 import Link from 'next/link';
+import { BackButton } from '@/components/ui/navigation';
 
 export default function TenantListingsMapPage() {
     return (
         <div className="h-[calc(100vh-160px)] flex flex-col space-y-[40px]">
             <div className="flex justify-between items-end">
                 <div>
+                    <BackButton href="/tenant/listings" className="mb-[24px]" />
                     <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Spatial Intelligence</span>
                     <h1 className="text-[32px] font-[700] text-[#111827]">Market Map Node</h1>
                     <p className="text-[16px] text-[#6B7280]">Geospatial distribution of verified institutional assets.</p>

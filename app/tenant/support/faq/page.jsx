@@ -28,11 +28,14 @@ const FAQS = [
     }
 ];
 
+import { BackButton } from '@/components/ui/navigation';
+
 export default function TenantFAQPage() {
     const [openIndex, setOpenIndex] = useState(null);
 
     return (
         <div className="space-y-[64px] max-w-[900px]">
+            <BackButton href="/tenant/support" />
             <div className="space-y-[16px]">
                 <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] block">Knowledge Retrieval</span>
                 <h1 className="text-[32px] font-[700] text-[#111827]">Frequently Asked Questions</h1>

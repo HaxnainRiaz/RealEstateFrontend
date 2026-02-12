@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useParams, useRouter } from 'next/navigation';
 import Card from '@/components/ui/data/Card';
+import { BackButton } from '@/components/ui/navigation';
 
 const MOCK_MESSAGES = [
     { id: '1', sender: 'Management Node', content: "Johnathan, we've completed the initial structural audit of your application for the Skyview Loft. Can you provide evidence of your annual yield protocol?", time: 'Yesterday, 10:24', type: 'inbound' },
@@ -21,12 +22,7 @@ export default function TenantMessageDetailPage() {
         <div className="h-[calc(100vh-160px)] flex flex-col space-y-[40px]">
             <div className="flex justify-between items-start">
                 <div className="space-y-[16px]">
-                    <button
-                        onClick={() => router.push('/tenant/messages')}
-                        className="text-[14px] font-[600] text-[#1D4ED8] flex items-center gap-[8px] hover:underline"
-                    >
-                        ← Return to Signal Queue
-                    </button>
+                    <BackButton href="/tenant/messages" label="Return to Signal Queue" />
                     <div className="space-y-[8px]">
                         <div className="flex items-center gap-[12px]">
                             <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em]">Signal Node: {id}</span>
@@ -57,8 +53,8 @@ export default function TenantMessageDetailPage() {
                         >
                             <div className={`max-w-[70%] space-y-[12px]`}>
                                 <div className={`p-[24px] rounded-[24px] shadow-sm ${msg.type === 'outbound'
-                                        ? 'bg-[#1D4ED8] text-[#FFFFFF] rounded-tr-[4px]'
-                                        : 'bg-[#F9FAFB] border border-[#D1D5DB]/30 text-[#111827] rounded-tl-[4px]'
+                                    ? 'bg-[#1D4ED8] text-[#FFFFFF] rounded-tr-[4px]'
+                                    : 'bg-[#F9FAFB] border border-[#D1D5DB]/30 text-[#111827] rounded-tl-[4px]'
                                     }`}>
                                     <p className="text-[15px] leading-[1.8] font-[500] whitespace-pre-wrap">{msg.content}</p>
                                 </div>

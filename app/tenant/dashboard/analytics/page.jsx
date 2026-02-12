@@ -5,10 +5,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Card, { CardTitle } from '@/components/ui/data/Card';
 import Section from '@/components/shared/layout/Section';
+import { BackButton } from '@/components/ui/navigation';
 
 export default function TenantAnalyticsPage() {
     return (
         <div className="space-y-[40px]">
+            <BackButton />
             <div>
                 <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Performance Hub</span>
                 <h1 className="text-[32px] font-[700] text-[#111827]">Engagement Analytics</h1>

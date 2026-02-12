@@ -6,10 +6,12 @@ import { motion } from 'framer-motion';
 import Card from '@/components/ui/data/Card';
 import TextField from '@/components/ui/input/TextField';
 import PrimaryButton from '@/components/ui/button/PrimaryButton';
+import { BackButton } from '@/components/ui/navigation';
 
 export default function TenantSecurityPage() {
     return (
         <div className="max-w-[800px] space-y-[40px]">
+            <BackButton href="/tenant/profile" />
             <div>
                 <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Cryptographic Integrity</span>
                 <h1 className="text-[32px] font-[700] text-[#111827]">Security Protocols</h1>

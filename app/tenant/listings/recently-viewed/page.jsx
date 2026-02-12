@@ -6,12 +6,14 @@ import { motion } from 'framer-motion';
 import { MOCK_ASSETS } from '@/lib/mockData';
 import Card, { CardTitle, CardDescription } from '@/components/ui/data/Card';
 import Link from 'next/link';
+import { BackButton } from '@/components/ui/navigation';
 
 export default function TenantRecentlyViewedPage() {
     const history = MOCK_ASSETS.slice(0, 4);
 
     return (
         <div className="space-y-[40px]">
+            <BackButton href="/tenant/listings" />
             <div>
                 <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Temporal Cache</span>
                 <h1 className="text-[32px] font-[700] text-[#111827]">Engagement History</h1>

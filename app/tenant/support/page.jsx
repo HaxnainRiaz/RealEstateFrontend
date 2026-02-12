@@ -126,11 +126,11 @@ export default function TenantSupportPage() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                     >
-                        <Card className="bg-[#0F172A] border-none p-[40px] text-[#FFFFFF] shadow-2xl relative overflow-hidden h-full">
-                            <div className="absolute top-0 right-0 p-[24px] opacity-10">
-                                <FiActivity className="w-[64px] h-[64px]" />
+                        <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[40px] shadow-sm relative overflow-hidden h-full">
+                            <div className="absolute top-0 right-0 p-[24px] opacity-5">
+                                <FiActivity className="w-[64px] h-[64px] text-[#111827]" />
                             </div>
-                            <h3 className="text-[18px] font-[800] mb-[32px] flex items-center gap-[10px]">
+                            <h3 className="text-[18px] font-[800] mb-[32px] flex items-center gap-[10px] text-[#111827]">
                                 <div className="w-[8px] h-[8px] rounded-full bg-[#10B981] animate-pulse" />
                                 System Integrity
                             </h3>
@@ -140,12 +140,12 @@ export default function TenantSupportPage() {
                                     { label: "Auth Node", val: "Operational", color: "text-[#10B981]" },
                                     { label: "Payment Ledger", val: "Active Audit", color: "text-[#F59E0B]" }
                                 ].map(sys => (
-                                    <div key={sys.label} className="space-y-[12px] border-b border-[#FFFFFF]/10 pb-[20px] last:border-0 last:pb-0">
+                                    <div key={sys.label} className="space-y-[12px] border-b border-[#E2E8F0] pb-[20px] last:border-0 last:pb-0">
                                         <div className="flex justify-between items-center">
-                                            <span className="text-[11px] text-[#FFFFFF]/50 font-[800] uppercase tracking-[0.1em]">{sys.label}</span>
+                                            <span className="text-[11px] text-[#6B7280] font-[800] uppercase tracking-[0.1em]">{sys.label}</span>
                                             <span className={`text-[13px] font-[800] ${sys.color}`}>{sys.val}</span>
                                         </div>
-                                        <div className="h-[4px] bg-[#FFFFFF]/10 rounded-full overflow-hidden">
+                                        <div className="h-[4px] bg-[#F3F4F6] rounded-full overflow-hidden">
                                             <motion.div
                                                 initial={{ width: 0 }}
                                                 animate={{ width: sys.val === 'Operational' ? '100%' : '85%' }}

@@ -12,6 +12,8 @@ const PREFERENCE_NODES = [
     { id: '4', title: 'Automated Settlement', desc: 'Authorize system to execute monthly assessments on the 1st cycle.' }
 ];
 
+import { BackButton } from '@/components/ui/navigation';
+
 export default function TenantPreferencesPage() {
     const [activeNodes, setActiveNodes] = useState(['1', '3']);
 
@@ -21,6 +23,7 @@ export default function TenantPreferencesPage() {
 
     return (
         <div className="max-w-[800px] space-y-[40px]">
+            <BackButton href="/tenant/profile" />
             <div>
                 <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Engagement Logic</span>
                 <h1 className="text-[32px] font-[700] text-[#111827]">User Preferences</h1>

@@ -10,9 +10,12 @@ const SHARED = [
     { id: '2', title: 'Financial Audit Nodes', with: 'Compliance AI Node', date: 'Oct 12, 2023', access: 'Limited Time' }
 ];
 
+import { BackButton } from '@/components/ui/navigation';
+
 export default function TenantDocumentSharedPage() {
     return (
         <div className="space-y-[40px]">
+            <BackButton href="/tenant/documents" />
             <div>
                 <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Portal Collaboration</span>
                 <h1 className="text-[32px] font-[700] text-[#111827]">Shared Nodes</h1>

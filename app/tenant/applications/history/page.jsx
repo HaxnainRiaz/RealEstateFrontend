@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { MOCK_REQUESTS, MOCK_ASSETS } from '@/lib/mockData';
 import Card from '@/components/ui/data/Card';
 import Link from 'next/link';
+import { BackButton } from '@/components/ui/navigation';
 
 export default function TenantApplicationHistoryPage() {
     // Mock archived applications
@@ -16,6 +17,7 @@ export default function TenantApplicationHistoryPage() {
 
     return (
         <div className="space-y-[40px]">
+            <BackButton href="/tenant/applications" />
             <div>
                 <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Archival Nodes</span>
                 <h1 className="text-[32px] font-[700] text-[#111827]">Application History</h1>

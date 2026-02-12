@@ -5,6 +5,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Card, { CardTitle, CardDescription } from '@/components/ui/data/Card';
 import Link from 'next/link';
+import { BackButton } from '@/components/ui/navigation';
 
 const ACTIONS = [
     { title: "Browse Inventory", desc: "Access the institutional market catalog.", href: "/tenant/listings", color: "bg-[#1D4ED8]" },
@@ -18,6 +19,7 @@ const ACTIONS = [
 export default function TenantQuickActionsPage() {
     return (
         <div className="space-y-[40px]">
+            <BackButton />
             <div>
                 <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Command Node</span>
                 <h1 className="text-[32px] font-[700] text-[#111827]">Quick Actions</h1>

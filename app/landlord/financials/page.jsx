@@ -39,17 +39,17 @@ export default function LandlordFinancialsPage() {
     };
 
     return (
-        <div className="space-y-[48px]">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-[32px]">
+        <div className="space-y-[32px] md:space-y-[48px]">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-[24px] md:gap-[32px]">
                 <div>
                     <div className="flex items-center gap-[12px] mb-[12px]">
                         <span className="px-[10px] py-[4px] bg-[#1D4ED8] text-[#FFFFFF] text-[10px] font-[800] uppercase tracking-[0.15em] rounded-[6px]">Financial Intelligence</span>
                     </div>
-                    <h1 className="text-[36px] font-[800] text-[#0F172A] tracking-tight">Revenue Analytics</h1>
-                    <p className="text-[16px] text-[#64748B] mt-[4px]">Real-time settlement tracking and yield distribution metrics.</p>
+                    <h1 className="text-[28px] md:text-[36px] font-[800] text-[#0F172A] tracking-tight">Revenue Analytics</h1>
+                    <p className="text-[14px] md:text-[16px] text-[#64748B] mt-[4px]">Real-time settlement tracking and yield distribution metrics.</p>
                 </div>
                 <div className="flex gap-[12px]">
-                    <button className="h-[52px] px-[24px] bg-[#FFFFFF] border border-[#E2E8F0] text-[#0F172A] text-[14px] font-[700] rounded-[12px] hover:border-[#1D4ED8] transition-all flex items-center gap-[8px] active:scale-95 shadow-sm">
+                    <button className="w-full md:w-auto h-[52px] px-[24px] bg-[#FFFFFF] border border-[#E2E8F0] text-[#0F172A] text-[13px] md:text-[14px] font-[700] rounded-[12px] hover:border-[#1D4ED8] transition-all flex items-center justify-center gap-[8px] active:scale-95 shadow-sm">
                         <FiDownload />
                         Export Ledger
                     </button>
@@ -57,24 +57,24 @@ export default function LandlordFinancialsPage() {
             </div>
 
             {/* Financial HUD */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-[24px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] md:gap-[24px]">
                 {financialStats.map((stat) => {
                     const Icon = stat.icon;
                     return (
-                        <Card key={stat.label} className="bg-[#FFFFFF] border-[#E2E8F0] p-[32px] hover:shadow-lg transition-all relative overflow-hidden group">
+                        <Card key={stat.label} className="bg-[#FFFFFF] border-[#E2E8F0] p-[24px] md:p-[32px] hover:shadow-lg transition-all relative overflow-hidden group">
                             <div className="absolute top-0 right-0 p-[24px] opacity-10 group-hover:scale-110 transition-transform">
-                                <Icon className={`w-[48px] h-[48px] ${stat.color}`} />
+                                <Icon className={`w-[40px] h-[40px] md:w-[48px] md:h-[48px] ${stat.color}`} />
                             </div>
-                            <div className="flex items-center gap-[12px] mb-[20px]">
+                            <div className="flex items-center gap-[12px] mb-[16px] md:mb-[20px]">
                                 <div className={`p-[10px] rounded-[10px] ${stat.bg} ${stat.color}`}>
-                                    <Icon className="w-[20px] h-[20px]" />
+                                    <Icon className="w-[18px] h-[18px] md:w-[20px] md:h-[20px]" />
                                 </div>
-                                <p className="text-[11px] font-[800] text-[#64748B] uppercase tracking-[0.1em]">{stat.label}</p>
+                                <p className="text-[10px] md:text-[11px] font-[800] text-[#64748B] uppercase tracking-[0.1em]">{stat.label}</p>
                             </div>
                             <div className="flex items-end justify-between">
-                                <h3 className="text-[32px] font-[800] text-[#0F172A] leading-none">{stat.val}</h3>
-                                <p className={`text-[13px] font-[700] ${stat.color} flex items-center gap-[4px]`}>
-                                    <FiTrendingUp className="w-[14px] h-[14px]" />
+                                <h3 className="text-[24px] md:text-[32px] font-[800] text-[#0F172A] leading-none">{stat.val}</h3>
+                                <p className={`text-[12px] md:text-[13px] font-[700] ${stat.color} flex items-center gap-[4px]`}>
+                                    <FiTrendingUp className="w-[12px] h-[12px] md:w-[14px] md:h-[14px]" />
                                     {stat.trend}
                                 </p>
                             </div>
@@ -83,11 +83,11 @@ export default function LandlordFinancialsPage() {
                 })}
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-[48px]">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-[32px] md:gap-[48px]">
                 {/* Settlement History */}
-                <div className="lg:col-span-8 space-y-[32px]">
+                <div className="lg:col-span-8 space-y-[24px] md:space-y-[32px]">
                     <div className="flex items-center justify-between">
-                        <h2 className="text-[20px] font-[800] text-[#0F172A] flex items-center gap-[12px]">
+                        <h2 className="text-[18px] md:text-[20px] font-[800] text-[#0F172A] flex items-center gap-[12px]">
                             <FiActivity className="text-[#1D4ED8]" />
                             Settlement Ledger
                         </h2>
@@ -95,7 +95,7 @@ export default function LandlordFinancialsPage() {
 
                     <div className="bg-[#FFFFFF] rounded-[20px] border border-[#E2E8F0] overflow-hidden shadow-sm">
                         <div className="overflow-x-auto">
-                            <table className="w-full text-left">
+                            <table className="w-full text-left min-w-[700px]">
                                 <thead>
                                     <tr className="bg-[#F8FAFC] border-b border-[#F1F5F9]">
                                         <th className="p-[20px] text-[11px] font-[800] uppercase tracking-[0.1em] text-[#64748B]">Protocol ID</th>
@@ -145,28 +145,28 @@ export default function LandlordFinancialsPage() {
                 </div>
 
                 {/* Yield Distribution */}
-                <div className="lg:col-span-4 space-y-[40px]">
+                <div className="lg:col-span-4 space-y-[32px] md:space-y-[40px]">
                     <div>
-                        <h2 className="text-[20px] font-[800] text-[#0F172A] flex items-center gap-[12px] mb-[24px]">
+                        <h2 className="text-[18px] md:text-[20px] font-[800] text-[#0F172A] flex items-center gap-[12px] mb-[20px] md:mb-[24px]">
                             <FiPieChart className="text-[#1D4ED8]" />
                             Yield Distribution
                         </h2>
-                        <Card className="bg-[#0F172A] border-none p-[40px] text-[#FFFFFF] shadow-2xl relative overflow-hidden">
+                        <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[24px] md:p-[40px] shadow-sm relative overflow-hidden">
                             <div className="absolute top-0 right-0 p-[24px] opacity-5">
-                                <FiActivity className="w-[120px] h-[120px]" />
+                                <FiActivity className="w-[80px] h-[80px] md:w-[120px] md:h-[120px] text-[#111827]" />
                             </div>
-                            <div className="space-y-[32px] relative z-10">
+                            <div className="space-y-[24px] md:space-y-[32px] relative z-10">
                                 {[
                                     { label: "Institutional Assets", val: "78%", color: "bg-[#1D4ED8]" },
                                     { label: "Enterprise Portfolios", val: "14%", color: "bg-[#10B981]" },
                                     { label: "Modern Nodes", val: "8%", color: "bg-[#64748B]" }
                                 ].map(item => (
-                                    <div key={item.label} className="space-y-[12px]">
-                                        <div className="flex justify-between text-[13px] font-[700] text-[#94A3B8]">
+                                    <div key={item.label} className="space-y-[10px] md:space-y-[12px]">
+                                        <div className="flex justify-between text-[12px] md:text-[13px] font-[700] text-[#6B7280]">
                                             <span className="uppercase tracking-wider">{item.label}</span>
-                                            <span className="text-[#FFFFFF]">{item.val}</span>
+                                            <span className="text-[#111827]">{item.val}</span>
                                         </div>
-                                        <div className="h-[6px] bg-[#FFFFFF]/10 rounded-full overflow-hidden">
+                                        <div className="h-[6px] bg-[#F3F4F6] rounded-full overflow-hidden">
                                             <motion.div
                                                 initial={{ width: 0 }}
                                                 whileInView={{ width: item.val }}
@@ -178,8 +178,8 @@ export default function LandlordFinancialsPage() {
                                 ))}
                             </div>
 
-                            <div className="mt-[48px] pt-[32px] border-t border-[#FFFFFF]/10 relative z-10">
-                                <button className="w-full h-[52px] bg-[#1D4ED8] text-[#FFFFFF] text-[14px] font-[800] rounded-[12px] hover:bg-[#2563EB] transition-all shadow-lg active:scale-95 flex items-center justify-center gap-[8px]">
+                            <div className="mt-[32px] md:mt-[48px] pt-[24px] md:pt-[32px] border-t border-[#E2E8F0] relative z-10">
+                                <button className="w-full h-[52px] bg-[#1D4ED8] text-[#FFFFFF] text-[13px] md:text-[14px] font-[800] rounded-[12px] hover:bg-[#2563EB] transition-all shadow-lg active:scale-95 flex items-center justify-center gap-[8px]">
                                     <FiDownload />
                                     Export Analysis
                                 </button>

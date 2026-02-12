@@ -4,6 +4,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Card from '@/components/ui/data/Card';
+import { BackButton } from '@/components/ui/navigation';
 
 const ALERTS = [
     { id: '1', type: 'System', title: 'Credential Audit Complete', content: 'Your institutional identity node has been successfully verified for Manhattan tier-1 assets.', date: '2h ago', priority: 'Low' },
@@ -14,6 +15,7 @@ const ALERTS = [
 export default function TenantAlertsPage() {
     return (
         <div className="space-y-[40px]">
+            <BackButton />
             <div className="flex justify-between items-end">
                 <div>
                     <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Network Signals</span>

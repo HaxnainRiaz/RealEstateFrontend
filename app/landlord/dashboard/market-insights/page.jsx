@@ -31,28 +31,28 @@ export default function LandlordMarketInsightsPage() {
     ];
 
     return (
-        <div className="space-y-[40px]">
-            <div className="flex items-center gap-[16px] mb-[8px]">
-                <Link href="/landlord/dashboard" className="p-[10px] bg-[#FFFFFF] border border-[#E2E8F0] rounded-[10px] text-[#64748B] hover:text-[#1D4ED8] hover:border-[#1D4ED8] transition-all group">
-                    <FiArrowLeft className="w-[18px] h-[18px] group-hover:-translate-x-[2px] transition-transform" />
+        <div className="space-y-[32px] md:space-y-[40px]">
+            <div className="flex items-center gap-[12px] md:gap-[16px] mb-[8px]">
+                <Link href="/landlord/dashboard" className="p-[8px] md:p-[10px] bg-[#FFFFFF] border border-[#E2E8F0] rounded-[10px] text-[#64748B] hover:text-[#1D4ED8] hover:border-[#1D4ED8] transition-all group">
+                    <FiArrowLeft className="w-[16px] md:w-[18px] h-[16px] md:h-[18px] group-hover:-translate-x-[2px] transition-transform" />
                 </Link>
                 <div>
-                    <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] block">Spatial Intelligence</span>
-                    <h1 className="text-[32px] font-[700] text-[#111827]">Market Insights</h1>
+                    <span className="text-[11px] md:text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] block">Spatial Intelligence</span>
+                    <h1 className="text-[24px] md:text-[32px] font-[700] text-[#111827]">Market Insights</h1>
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-[40px]">
-                <div className="lg:col-span-8 space-y-[40px]">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-[32px] md:gap-[40px]">
+                <div className="lg:col-span-8 space-y-[32px] md:space-y-[40px]">
                     <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-0 overflow-hidden shadow-sm">
-                        <div className="p-[40px] border-b border-[#D1D5DB]/20 bg-[#F9FAFB]/50 flex justify-between items-center">
-                            <h3 className="text-[20px] font-[700] text-[#111827]">Geospatial Sentiment Heatmap</h3>
-                            <div className="flex gap-[8px]">
-                                <span className="w-[12px] h-[12px] rounded-full bg-[#1D4ED8]" />
-                                <span className="text-[11px] font-[700] uppercase text-[#64748B]">Demand Focus</span>
+                        <div className="p-[20px] md:p-[40px] border-b border-[#D1D5DB]/20 bg-[#F9FAFB]/50 flex justify-between items-center gap-[12px]">
+                            <h3 className="text-[17px] md:text-[20px] font-[700] text-[#111827]">Geospatial Sentiment Heatmap</h3>
+                            <div className="flex items-center gap-[6px] md:gap-[8px] shrink-0">
+                                <span className="w-[8px] md:w-[12px] h-[8px] md:h-[12px] rounded-full bg-[#1D4ED8]" />
+                                <span className="text-[10px] md:text-[11px] font-[700] uppercase text-[#64748B]">Demand Focus</span>
                             </div>
                         </div>
-                        <div className="aspect-video bg-[#F9FAFB] relative overflow-hidden">
+                        <div className="aspect-[4/3] sm:aspect-video bg-[#F9FAFB] relative overflow-hidden">
                             {/* Abstract Map UI */}
                             <div className="absolute inset-0 opacity-[0.4]" style={{
                                 backgroundImage: `radial-gradient(circle at 20% 30%, #1D4ED8 0%, transparent 40%),
@@ -72,17 +72,17 @@ export default function LandlordMarketInsightsPage() {
                                     initial={{ scale: 0 }}
                                     animate={{ scale: [1, 1.2, 1] }}
                                     transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
-                                    className={`absolute w-[40px] h-[40px] ${pos.color} rounded-full opacity-20`}
+                                    className={`absolute w-[30px] md:w-[40px] h-[30px] md:h-[40px] ${pos.color} rounded-full opacity-20`}
                                     style={{ top: `${pos.t}%`, left: `${pos.l}%` }}
                                 />
                             ))}
 
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <Card className="bg-white/90 backdrop-blur-md border border-white/20 p-[24px] shadow-2xl text-center max-w-[320px]">
-                                    <FiMapPin className="w-[24px] h-[24px] text-[#1D4ED8] mx-auto mb-[16px]" />
-                                    <h4 className="text-[16px] font-[800] text-[#0F172A] mb-[4px]">Spatial Data Projection</h4>
-                                    <p className="text-[13px] text-[#64748B] leading-relaxed">Aggregating neighborhood price indices across 12,000 unique node points.</p>
-                                    <div className="mt-[20px] h-[60px] w-full opacity-20">
+                            <div className="absolute inset-0 flex items-center justify-center p-[20px]">
+                                <Card className="bg-white/90 backdrop-blur-md border border-white/20 p-[16px] md:p-[24px] shadow-2xl text-center max-w-[280px] md:max-w-[320px]">
+                                    <FiMapPin className="w-[20px] md:w-[24px] h-[20px] md:h-[24px] text-[#1D4ED8] mx-auto mb-[12px] md:mb-[16px]" />
+                                    <h4 className="text-[14px] md:text-[16px] font-[800] text-[#0F172A] mb-[4px]">Spatial Data Projection</h4>
+                                    <p className="text-[12px] md:text-[13px] text-[#64748B] leading-relaxed">Aggregating neighborhood price indices across 12,000 unique node points.</p>
+                                    <div className="mt-[16px] md:mt-[20px] h-[40px] md:h-[60px] w-full opacity-20">
                                         <ResponsiveContainer width="100%" height="100%">
                                             <ComposedChart data={chartData}>
                                                 <Bar dataKey="value" fill="#1D4ED8" radius={[4, 4, 0, 0]} />
@@ -94,9 +94,9 @@ export default function LandlordMarketInsightsPage() {
                         </div>
                     </Card>
 
-                    <div className="space-y-[24px]">
-                        <h3 className="text-[20px] font-[700] text-[#111827]">Regional Index Forensics</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
+                    <div className="space-y-[20px] md:space-y-[24px]">
+                        <h3 className="text-[18px] md:text-[20px] font-[700] text-[#111827]">Regional Index Forensics</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-[20px] md:gap-[24px]">
                             {segments.map((seg, i) => (
                                 <motion.div
                                     key={seg.area}
@@ -104,21 +104,21 @@ export default function LandlordMarketInsightsPage() {
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: i * 0.1 }}
                                 >
-                                    <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[32px] hover:border-[#1D4ED8] hover:shadow-lg transition-all group">
-                                        <div className="flex justify-between items-start mb-[16px]">
-                                            <h4 className="text-[17px] font-[700] text-[#111827] group-hover:text-[#1D4ED8] transition-colors">{seg.area}</h4>
-                                            <span className={`px-[8px] py-[3px] rounded-[4px] text-[10px] font-[800] uppercase ${seg.sentiment === 'Bullish' || seg.sentiment === 'Aggressive' ? 'bg-[#10B981]/10 text-[#10B981]' : 'bg-[#6B7280]/10 text-[#6B7280]'}`}>
+                                    <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[24px] md:p-[32px] hover:border-[#1D4ED8] hover:shadow-lg transition-all group h-full">
+                                        <div className="flex justify-between items-start mb-[16px] gap-[12px]">
+                                            <h4 className="text-[16px] md:text-[17px] font-[700] text-[#111827] group-hover:text-[#1D4ED8] transition-colors truncate">{seg.area}</h4>
+                                            <span className={`px-[8px] py-[3px] rounded-[4px] text-[9px] md:text-[10px] font-[800] uppercase shrink-0 ${seg.sentiment === 'Bullish' || seg.sentiment === 'Aggressive' ? 'bg-[#10B981]/10 text-[#10B981]' : 'bg-[#6B7280]/10 text-[#6B7280]'}`}>
                                                 {seg.sentiment}
                                             </span>
                                         </div>
-                                        <div className="flex justify-between items-end">
-                                            <div className="space-y-[4px]">
-                                                <p className="text-[24px] font-[700] text-[#111827]">{seg.delta}</p>
-                                                <p className="text-[12px] text-[#6B7280]">Price Forecast Delta</p>
+                                        <div className="flex justify-between items-end gap-[16px]">
+                                            <div className="space-y-[2px] md:space-y-[4px] min-w-0">
+                                                <p className="text-[20px] md:text-[24px] font-[700] text-[#111827]">{seg.delta}</p>
+                                                <p className="text-[11px] md:text-[12px] text-[#6B7280] truncate">Price Forecast Delta</p>
                                             </div>
-                                            <div className="text-right">
-                                                <p className="text-[15px] font-[700] text-[#111827]">{seg.nodeCount}</p>
-                                                <p className="text-[12px] text-[#6B7280]">Active Competitor Nodes</p>
+                                            <div className="text-right shrink-0">
+                                                <p className="text-[14px] md:text-[15px] font-[700] text-[#111827]">{seg.nodeCount}</p>
+                                                <p className="text-[11px] md:text-[12px] text-[#6B7280]">Active Nodes</p>
                                             </div>
                                         </div>
                                     </Card>
@@ -129,35 +129,35 @@ export default function LandlordMarketInsightsPage() {
                 </div>
 
                 <div className="lg:col-span-4 space-y-[32px]">
-                    <Card className="bg-[#111827] border-none p-[40px] text-white overflow-hidden relative">
-                        <div className="absolute top-0 right-0 p-[24px] opacity-10">
-                            <FiTrendingUp className="w-[64px] h-[64px]" />
+                    <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[24px] md:p-[40px] overflow-hidden relative shadow-sm">
+                        <div className="absolute top-0 right-0 p-[20px] md:p-[24px] opacity-5">
+                            <FiTrendingUp className="w-[48px] md:w-[64px] h-[48px] md:h-[64px] text-[#111827]" />
                         </div>
-                        <h3 className="text-[18px] font-[700] mb-[24px] relative z-10">Market Pulse</h3>
-                        <div className="space-y-[32px] relative z-10">
+                        <h3 className="text-[16px] md:text-[18px] font-[700] mb-[20px] md:mb-[24px] relative z-10 text-[#111827]">Market Pulse</h3>
+                        <div className="space-y-[24px] md:space-y-[32px] relative z-10">
                             {[
                                 { l: "Supply Saturation", v: "Low", d: "High demand cluster detected" },
                                 { l: "Yield Stability", v: "Grade A", d: "Consistent across all epochs" },
                                 { l: "Search Intensity", v: "+12.4%", d: "Temporal increase in verified signals" }
                             ].map(item => (
-                                <div key={item.l} className="space-y-[8px]">
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-[11px] font-[700] text-white/50 uppercase tracking-[0.1em]">{item.l}</span>
-                                        <span className="text-[14px] font-[800] text-[#1D4ED8] bg-white px-[8px] py-[2px] rounded-[4px]">{item.v}</span>
+                                <div key={item.l} className="space-y-[6px] md:space-y-[8px]">
+                                    <div className="flex justify-between items-center gap-[12px]">
+                                        <span className="text-[10px] md:text-[11px] font-[700] text-[#6B7280] uppercase tracking-[0.1em] truncate">{item.l}</span>
+                                        <span className="text-[13px] md:text-[14px] font-[800] text-[#1D4ED8] bg-[#EFF6FF] px-[8px] py-[2px] rounded-[4px] shrink-0">{item.v}</span>
                                     </div>
-                                    <p className="text-[13px] text-white/60 leading-[1.6]">{item.d}</p>
+                                    <p className="text-[12px] md:text-[13px] text-[#6B7280] leading-[1.6]">{item.d}</p>
                                 </div>
                             ))}
                         </div>
                     </Card>
 
-                    <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[32px]">
-                        <h4 className="text-[16px] font-[700] text-[#111827] mb-[20px]">Intelligence Source</h4>
-                        <div className="flex items-center gap-[16px] p-[16px] bg-[#F9FAFB] rounded-[12px] border border-[#E2E8F0]">
-                            <div className="w-[10px] h-[10px] rounded-full bg-[#10B981] animate-pulse" />
-                            <span className="text-[13px] font-[600] text-[#111827]">Live Neighborhood Feed Active</span>
+                    <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[24px] md:p-[32px]">
+                        <h4 className="text-[15px] md:text-[16px] font-[700] text-[#111827] mb-[16px] md:mb-[20px]">Intelligence Source</h4>
+                        <div className="flex items-center gap-[12px] md:gap-[16px] p-[12px] md:p-[16px] bg-[#F9FAFB] rounded-[12px] border border-[#E2E8F0]">
+                            <div className="w-[8px] md:w-[10px] h-[8px] md:h-[10px] rounded-full bg-[#10B981] animate-pulse shrink-0" />
+                            <span className="text-[12px] md:text-[13px] font-[600] text-[#111827]">Live Neighborhood Feed Active</span>
                         </div>
-                        <p className="text-[13px] text-[#6B7280] leading-[1.6] mt-[16px]">
+                        <p className="text-[12px] md:text-[13px] text-[#6B7280] leading-[1.6] mt-[16px]">
                             Data is aggregated from 2,400+ institutional sources and verified property registries.
                         </p>
                     </Card>

@@ -12,9 +12,12 @@ const NOTIF_CHANNELS = [
     { id: '4', title: 'Security Audits', channels: ['Email', 'SMS'] }
 ];
 
+import { BackButton } from '@/components/ui/navigation';
+
 export default function TenantNotificationsPage() {
     return (
         <div className="max-w-[800px] space-y-[40px]">
+            <BackButton href="/tenant/profile" />
             <div>
                 <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Signal Distribution</span>
                 <h1 className="text-[32px] font-[700] text-[#111827]">Notification Center</h1>

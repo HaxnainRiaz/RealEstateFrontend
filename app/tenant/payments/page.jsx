@@ -35,20 +35,20 @@ export default function TenantPaymentsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-[40px]">
                 {/* Active Balance */}
                 <div className="lg:col-span-4">
-                    <Card className="bg-[#111827] border-none p-[40px] text-[#FFFFFF] shadow-2xl h-full">
+                    <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[40px] shadow-sm h-full">
                         <div className="space-y-[32px]">
                             <div>
-                                <p className="text-[12px] font-[700] text-[#FFFFFF]/60 uppercase tracking-[0.05em] mb-[8px]">Active Balance</p>
-                                <h2 className="text-[40px] font-[700]">$0.00</h2>
+                                <p className="text-[12px] font-[700] text-[#6B7280] uppercase tracking-[0.05em] mb-[8px]">Active Balance</p>
+                                <h2 className="text-[40px] font-[700] text-[#111827]">$0.00</h2>
                             </div>
                             <div className="space-y-[12px]">
                                 <div className="flex justify-between text-[14px]">
-                                    <span className="text-[#FFFFFF]/60">Next Assessment</span>
-                                    <span className="font-[600]">Nov 01, 2023</span>
+                                    <span className="text-[#6B7280]">Next Assessment</span>
+                                    <span className="font-[600] text-[#111827]">Nov 01, 2023</span>
                                 </div>
                                 <div className="flex justify-between text-[14px]">
-                                    <span className="text-[#FFFFFF]/60">Amount Scheduled</span>
-                                    <span className="font-[700] text-[#1D4ED8] bg-[#FFFFFF] px-[8px] py-[2px] rounded-[4px]">$4,200.00</span>
+                                    <span className="text-[#6B7280]">Amount Scheduled</span>
+                                    <span className="font-[700] text-[#1D4ED8] bg-[#EFF6FF] px-[8px] py-[2px] rounded-[4px]">$4,200.00</span>
                                 </div>
                             </div>
                             <PrimaryButton className="w-full h-[56px] text-white">Transact Now</PrimaryButton>

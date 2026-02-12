@@ -5,6 +5,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Card from '@/components/ui/data/Card';
 import PrimaryButton from '@/components/ui/button/PrimaryButton';
+import { BackButton } from '@/components/ui/navigation';
 
 const METHODS = [
     { id: '1', type: 'Institutional Bank (ACH)', detail: 'Chase Bank •••• 8829', status: 'Primary Node', date: 'Oct 2023' },
@@ -14,6 +15,7 @@ const METHODS = [
 export default function TenantPaymentMethodsPage() {
     return (
         <div className="space-y-[40px]">
+            <BackButton href="/tenant/payments" />
             <div className="flex justify-between items-end">
                 <div>
                     <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Settlement Governance</span>

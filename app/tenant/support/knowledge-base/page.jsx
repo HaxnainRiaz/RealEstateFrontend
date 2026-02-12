@@ -12,9 +12,12 @@ const CATEGORIES = [
     { title: 'Compliance Vault', count: 5, desc: 'Legal frameworks and residential rules.' }
 ];
 
+import { BackButton } from '@/components/ui/navigation';
+
 export default function TenantKnowledgeBasePage() {
     return (
         <div className="space-y-[40px]">
+            <BackButton href="/tenant/support" />
             <div className="text-center max-w-[700px] mx-auto space-y-[24px]">
                 <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] block">Data Repository</span>
                 <h1 className="text-[40px] font-[700] text-[#111827]">Knowledge Hub</h1>

@@ -12,9 +12,12 @@ const SAVED_SEARCHES = [
     { id: '3', title: 'Enterprise Hubs', criteria: 'Enterprise Tier, Commute Nodes, <$4.2k', frequency: 'Weekly Pulse', date: 'Oct 10, 2023' }
 ];
 
+import { BackButton } from '@/components/ui/navigation';
+
 export default function TenantSavedSearchesPage() {
     return (
         <div className="space-y-[40px]">
+            <BackButton href="/tenant/listings" />
             <div className="flex justify-between items-end">
                 <div>
                     <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] mb-[8px] block">Search Protocols</span>

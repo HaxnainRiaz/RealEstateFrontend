@@ -9,6 +9,7 @@ import Section from '@/components/shared/layout/Section';
 import Card, { CardTitle, CardDescription } from '@/components/ui/data/Card';
 import PrimaryButton from '@/components/ui/button/PrimaryButton';
 import Link from 'next/link';
+import { BackButton } from '@/components/ui/navigation';
 
 export default function TenantListingDetailPage() {
     const { id } = useParams();
@@ -28,9 +29,7 @@ export default function TenantListingDetailPage() {
             {/* Detail Header */}
             <div className="flex flex-col md:flex-row md:items-start justify-between gap-[32px]">
                 <div className="space-y-[16px]">
-                    <Link href="/tenant/listings" className="text-[14px] font-[600] text-[#1D4ED8] flex items-center gap-[8px] hover:underline">
-                        ← Return to Catalog
-                    </Link>
+                    <BackButton label="Return to Catalog" href="/tenant/listings" />
                     <div className="space-y-[8px]">
                         <span className="px-[12px] py-[4px] bg-[#1D4ED8]/10 text-[#1D4ED8] text-[12px] font-[700] uppercase rounded-[4px]">
                             {asset.category} Asset Managed
@@ -65,7 +64,7 @@ export default function TenantListingDetailPage() {
                 <div className="lg:col-span-8 space-y-[64px]">
                     <div className="aspect-[16/9] bg-[#F9FAFB] rounded-[32px] border border-[#D1D5DB]/50 overflow-hidden relative">
                         <div className="absolute inset-0 bg-[#F3F4F6]" />
-                        <div className="absolute bottom-[40px] left-[40px] text-[#FFFFFF] z-10 font-[700] text-[12px] uppercase">Asset Visual Node v1.0</div>
+                        <div className="absolute bottom-[40px] left-[40px] text-[#000000] z-10 font-[700] text-[12px] uppercase">Asset Visual Node v1.0</div>
                     </div>
 
                     <div className="space-y-[40px]">
@@ -106,17 +105,17 @@ export default function TenantListingDetailPage() {
 
                 {/* Sidebar Info */}
                 <div className="lg:col-span-4 space-y-[40px]">
-                    <Card className="bg-[#111827] text-[#FFFFFF] p-[40px] border-none shadow-xl">
-                        <h3 className="text-[18px] font-[700] mb-[24px]">Institutional Intel</h3>
+                    <Card className="bg-[#FFFFFF] border-[#D1D5DB]/30 p-[40px] shadow-sm">
+                        <h3 className="text-[18px] font-[700] mb-[24px] text-[#111827]">Institutional Intel</h3>
                         <div className="space-y-[24px]">
                             {[
                                 { label: "Target Yield", val: asset.yield },
                                 { label: "Stability Index", val: "9.2/10" },
                                 { label: "Energy Protocol", val: "Grade A" }
                             ].map(stat => (
-                                <div key={stat.label} className="flex justify-between items-center border-b border-[#FFFFFF]/10 pb-[12px]">
-                                    <span className="text-[13px] text-[#000000]/60 font-[600] uppercase tracking-[0.05em]">{stat.label}</span>
-                                    <span className="text-[16px] text-[#000000] font-[700]">{stat.val}</span>
+                                <div key={stat.label} className="flex justify-between items-center border-b border-[#E2E8F0] pb-[12px]">
+                                    <span className="text-[13px] text-[#6B7280] font-[600] uppercase tracking-[0.05em]">{stat.label}</span>
+                                    <span className="text-[16px] text-[#111827] font-[700]">{stat.val}</span>
                                 </div>
                             ))}
                         </div>

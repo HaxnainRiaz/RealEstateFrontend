@@ -4,8 +4,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Card from '@/components/ui/data/Card';
-import Link from 'next/link';
-import { FiArrowLeft, FiActivity, FiClock, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
+import { BackButton } from '@/components/ui/navigation';
+import { FiActivity, FiClock, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
 
 const TICKETS = [
     { id: 'TIC-102', title: 'Credential Sync Anomaly', status: 'In Audit', priority: 'High', date: 'Oct 24, 2023', icon: FiAlertCircle, color: 'text-[#EF4444]', bg: 'bg-[#FEF2F2]' },
@@ -31,10 +31,8 @@ export default function TenantSupportTicketsPage() {
     return (
         <div className="space-y-[40px]">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-[24px]">
-                <div className="flex items-center gap-[16px]">
-                    <Link href="/tenant/support" className="p-[10px] bg-[#FFFFFF] border border-[#E2E8F0] rounded-[10px] text-[#64748B] hover:text-[#1D4ED8] hover:border-[#1D4ED8] transition-all group">
-                        <FiArrowLeft className="w-[18px] h-[18px] group-hover:-translate-x-[2px] transition-transform" />
-                    </Link>
+                <div className="flex items-center gap-[24px]">
+                    <BackButton href="/tenant/support" />
                     <div>
                         <span className="text-[12px] font-[700] text-[#1D4ED8] uppercase tracking-[0.1em] block">Incident Ledger</span>
                         <h1 className="text-[32px] font-[700] text-[#111827]">Support Tickets</h1>
